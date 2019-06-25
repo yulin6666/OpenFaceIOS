@@ -42,28 +42,28 @@ void visualise_tracking(cv::Mat& captured_image, cv::Mat_<float>& depth_image, c
     double detection_certainty = face_model.detection_certainty;
     bool detection_success = face_model.detection_success;
     
-    double visualisation_boundary = 0.2;
+    double visualisation_boundary = 0.1;
     
     // Only draw if the reliability is reasonable, the value is slightly ad-hoc
     if (detection_certainty < visualisation_boundary)
     {
         LandmarkDetector::Draw(captured_image, face_model);
         
-        double vis_certainty = detection_certainty;
-        if (vis_certainty > 1)
-            vis_certainty = 1;
-        if (vis_certainty < -1)
-            vis_certainty = -1;
-        
-        vis_certainty = (vis_certainty + 1) / (visualisation_boundary + 1);
-        
+//        double vis_certainty = detection_certainty;
+//        if (vis_certainty > 1)
+//            vis_certainty = 1;
+//        if (vis_certainty < -1)
+//            vis_certainty = -1;
+//
+//        vis_certainty = (vis_certainty + 1) / (visualisation_boundary + 1);
+//
         // A rough heuristic for box around the face width
-        int thickness = (int)std::ceil(2.0* ((double)captured_image.cols) / 640.0);
+       //  int thickness = (int)std::ceil(2.0* ((double)captured_image.cols) / 640.0);
         
-        cv::Vec6d pose_estimate_to_draw = LandmarkDetector::GetCorrectedPoseWorld(face_model, fx, fy, cx, cy);
+        //cv::Vec6d pose_estimate_to_draw = LandmarkDetector::GetCorrectedPoseWorld(face_model, fx, fy, cx, cy);
         
         // Draw it in reddish if uncertain, blueish if certain
-        LandmarkDetector::DrawBox(captured_image, pose_estimate_to_draw, cv::Scalar((1 - vis_certainty)*255.0, 0, vis_certainty * 255), thickness, fx, fy, cx, cy);
+//        LandmarkDetector::DrawBox(captured_image, pose_estimate_to_draw, cv::Scalar((1 - vis_certainty)*255.0, 0, vis_certainty * 255), thickness, fx, fy, cx, cy);
     }
 }
 
@@ -97,14 +97,14 @@ void visualise_tracking(cv::Mat& captured_image, cv::Mat_<float>& depth_image, c
     //////////////////////////////////////////////////////////////////////
     /// gaze EstimateGaze
     ///
-    cv::Point3f gazeDirection0(0, 0, -1);
-    cv::Point3f gazeDirection1(0, 0, -1);
-    if (det_parameters.track_gaze && detection_success && clnf_model.eye_model)
-    {
-        GazeEstimate::EstimateGaze(clnf_model, gazeDirection0, fx, fy, cx, cy, true);
-        GazeEstimate::EstimateGaze(clnf_model, gazeDirection1, fx, fy, cx, cy, false);
-        GazeEstimate::DrawGaze(captured_image, clnf_model, gazeDirection0, gazeDirection1, fx, fy, cx, cy);
-    }
+//    cv::Point3f gazeDirection0(0, 0, -1);
+//    cv::Point3f gazeDirection1(0, 0, -1);
+//    if (det_parameters.track_gaze && detection_success && clnf_model.eye_model)
+//    {
+//        GazeEstimate::EstimateGaze(clnf_model, gazeDirection0, fx, fy, cx, cy, true);
+//        GazeEstimate::EstimateGaze(clnf_model, gazeDirection1, fx, fy, cx, cy, false);
+//        GazeEstimate::DrawGaze(captured_image, clnf_model, gazeDirection0, gazeDirection1, fx, fy, cx, cy);
+//    }
     
     return true;
 }

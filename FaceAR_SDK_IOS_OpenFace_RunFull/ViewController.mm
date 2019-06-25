@@ -36,7 +36,7 @@
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
     self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
-    self.videoCamera.defaultFPS = 30;
+    self.videoCamera.defaultFPS = 15;
     self.videoCamera.grayscaleMode = NO;
     
     ///////////////////
