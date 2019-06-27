@@ -1,4 +1,4 @@
-﻿///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2016, Carnegie Mellon University and University of Cambridge,
 // all rights reserved.
 //
@@ -140,6 +140,6 @@ void FaceModelParameters::init()
     curr_face_detector = HAAR_DETECTOR; //HOG_SVM_DETECTOR;
     
     // The gaze tracking has to be explicitly initialised
-    track_gaze = true;
+    track_gaze = false;
 }
 
