@@ -1,4 +1,4 @@
-﻿///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2016, Carnegie Mellon University and University of Cambridge,
 // all rights reserved.
 //
@@ -1131,13 +1131,13 @@ void Draw(cv::Mat img, const CLNF& clnf_model)
     Draw(img, clnf_model.detected_landmarks, clnf_model.patch_experts.visibilities[0][idx]);
 
     // If the model has hierarchical updates draw those too
-    for(size_t i = 0; i < clnf_model.hierarchical_models.size(); ++i)
-    {
-        if(clnf_model.hierarchical_models[i].pdm.NumberOfPoints() != clnf_model.hierarchical_mapping[i].size())
-        {
-            Draw(img, clnf_model.hierarchical_models[i]);
-        }
-    }
+//    for(size_t i = 0; i < clnf_model.hierarchical_models.size(); ++i)
+//    {
+//        if(clnf_model.hierarchical_models[i].pdm.NumberOfPoints() != clnf_model.hierarchical_mapping[i].size())
+//        {
+//            Draw(img, clnf_model.hierarchical_models[i]);
+//        }
+//    }
 }
 
 void DrawLandmarks(cv::Mat img, std::vector<cv::Point> landmarks)

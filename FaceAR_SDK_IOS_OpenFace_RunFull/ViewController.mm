@@ -36,7 +36,7 @@
     self.videoCamera.defaultAVCaptureDevicePosition = AVCaptureDevicePositionFront;
     self.videoCamera.defaultAVCaptureSessionPreset = AVCaptureSessionPreset640x480;
     self.videoCamera.defaultAVCaptureVideoOrientation = AVCaptureVideoOrientationPortrait;
-    self.videoCamera.defaultFPS = 15;
+    self.videoCamera.defaultFPS = 25;
     self.videoCamera.grayscaleMode = NO;
     
     ///////////////////
@@ -67,8 +67,12 @@
     
         fx = (fx + fy) / 2.0;
         fy = fx;
-    
+        
+        NSTimeInterval start = [[NSDate date] timeIntervalSince1970]*1000;
         [[FaceARDetectIOS alloc] run_FaceAR:targetImage frame__:frame_count fx__:fx fy__:fy cx__:cx cy__:cy];
+        NSTimeInterval end = [[NSDate date] timeIntervalSince1970]*1000;
+        NSLog(@" duration %.2f",end - start);
+
         frame_count = frame_count + 1;
     }
     cv::cvtColor(targetImage, image, cv::COLOR_BGRA2RGB);
