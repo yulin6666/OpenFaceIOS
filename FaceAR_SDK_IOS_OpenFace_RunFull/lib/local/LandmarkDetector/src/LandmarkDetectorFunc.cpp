@@ -1,4 +1,4 @@
-﻿///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 // Copyright (C) 2016, Carnegie Mellon University and University of Cambridge,
 // all rights reserved.
 //
@@ -67,6 +67,7 @@
 
 // System includes
 #include <vector>
+#include <sys/time.h>
 
 using namespace LandmarkDetector;
 
@@ -358,7 +359,12 @@ bool LandmarkDetector::DetectLandmarksInVideo(const cv::Mat_<uchar> &grayscale_i
 //		else
         if(params.curr_face_detector == FaceModelParameters::HAAR_DETECTOR)
 		{
+            struct timeval start;
+            gettimeofday(&start,NULL);
 			face_detection_success = LandmarkDetector::DetectSingleFace(bounding_box, grayscale_image, clnf_model.face_detector_HAAR, preference_det);
+            struct timeval end;
+            gettimeofday(&end,NULL);
+            printf("DetectSingleFace,duration %d\n",(end.tv_usec-start.tv_usec)/1000);
 		}
 
 		// Attempt to detect landmarks using the detected face (if unseccessful the detection will be ignored)
