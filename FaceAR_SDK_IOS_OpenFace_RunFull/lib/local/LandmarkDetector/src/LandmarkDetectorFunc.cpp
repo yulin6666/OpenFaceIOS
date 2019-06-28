@@ -388,8 +388,12 @@ bool LandmarkDetector::DetectLandmarksInVideo(const cv::Mat_<uchar> &grayscale_i
 			params.window_sizes_current = params.window_sizes_init;
 
 			// Do the actual landmark detection (and keep it only if successful)
+            struct timeval start;
+            gettimeofday(&start,NULL);
 			bool landmark_detection_success = clnf_model.DetectLandmarks(grayscale_image, depth_image, params);
-
+            struct timeval end;
+            gettimeofday(&end,NULL);
+            printf("DetectLandmarks,duration %d\n",(end.tv_usec-start.tv_usec)/1000);
 			// If landmark reinitialisation unsucessful continue from previous estimates
 			// if it's initial detection however, do not care if it was successful as the validator might be wrong, so continue trackig
 			// regardless
